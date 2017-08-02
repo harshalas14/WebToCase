@@ -47,7 +47,7 @@ action="https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseMa
 function loadXMLDoc() {
 	
 	//Authorize User to perfrom further operation
-	var httpLogin = new XMLHttpRequest();
+	/*var httpLogin = new XMLHttpRequest();
 	var login = "https://login.salesforce.com/services/oauth2/token";
 	var loginParams  ="grant_type=password&username=harshala.shewale@ensdev.com&password=espl@12345&client_secret=1401072963042743558&client_id=3MVG9ZL0ppGP5UrBLIM7G_t9JPwGsfKFhFUPjq24P2WE6Nky5VIllwz0thktVoc8RzT4W1H4hZcYyvZz_SOqr";
 	httpLogin.open("POST", login, true);
@@ -67,9 +67,9 @@ function loadXMLDoc() {
 			//alert('Error' + httpLogin.response)
 		}
 	}
-	
+	*/
 	//Create Case and Attachment
-	/*var http = new XMLHttpRequest();
+	var http = new XMLHttpRequest();
 	var url = "https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/";
 	var name = document.getElementById('name').value;	
 	var subject = document.getElementById('subject').value;	
@@ -89,7 +89,7 @@ function loadXMLDoc() {
 		{
 			//alert('Error' + http.responseText)
 		}
-	}*/
+	}
 	
 	
 }

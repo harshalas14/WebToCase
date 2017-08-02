@@ -1,0 +1,116 @@
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.
+!!-- working code                                        -->
+<!--  ----------------------------------------------------------------------  -->
+
+
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+
+<form >
+<!--https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8
+action="https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/" method="POST"
+-->
+<input type=hidden name="orgid" value="00D28000000UeBL">
+<input type=hidden name="retURL" value="http://">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+<!--  these lines if you wish to test in debug mode.                          -->
+<!--  <input type="hidden" name="debug" value=1>                              -->
+<!--  <input type="hidden" name="debugEmail"                                  -->
+<!--  value="harshala.shewale@eternussolutions.com">                          -->
+<!--  ----------------------------------------------------------------------  -->
+
+<label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+
+<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+
+<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
+
+<label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
+
+<label for="description">Description</label><textarea name="description"></textarea><br>
+
+<input type='file' name='upfile' id='fileInput'  onchange="encodeImageFileAsURL(this)">
+
+<button type="button" onclick="loadXMLDoc();">Submit</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+
+function loadXMLDoc() {
+	
+	//Authorize User to perfrom further operation
+	var httpLogin = new XMLHttpRequest();
+	var login = "https://login.salesforce.com/services/oauth2/token";
+	var loginParams  ="grant_type=password&username=harshala.shewale@ensdev.com&password=espl@12345&client_secret=1401072963042743558&client_id=3MVG9ZL0ppGP5UrBLIM7G_t9JPwGsfKFhFUPjq24P2WE6Nky5VIllwz0thktVoc8RzT4W1H4hZcYyvZz_SOqr";
+	httpLogin.open("POST", login, true);
+	httpLogin.setRequestHeader("Authorization", "Bearer");
+	httpLogin.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	httpLogin.setRequestHeader("WWW-Authenticate", "Basic");
+    httpLogin.setRequestHeader("Access-Control-Allow-Origin", "file:///C:/Users/harshala.shewale/Desktop/")	
+	httpLogin.send(loginParams);
+	
+	httpLogin.onreadystatechange = function() {
+		if(httpLogin.readyState == 4 && httpLogin.status == 200) {
+			console.log('Success' + httpLogin);
+		}
+		else
+		{
+			console.log('Error' + httpLogin);
+			//alert('Error' + httpLogin.response)
+		}
+	}
+	
+	//Create Case and Attachment
+	/*var http = new XMLHttpRequest();
+	var url = "https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/";
+	var name = document.getElementById('name').value;	
+	var subject = document.getElementById('subject').value;	
+	var params = "{\"name\":\""+name+"\",\"subject\":\""+subject+"\",\"filename\":\""+filename+"\", \"filecontent\":\""+filecontent+"\"}";
+	http.open("POST", url, true);
+	http.send(params);
+
+	//Send the proper header information along with the request
+	
+	//http.setRequestHeader("Access-Control-Allow-Methods","POST");
+	//http.setRequestHeader("Content-Type","text/plain");
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			//alert('Success' + http.responseText);
+		}
+		else
+		{
+			//alert('Error' + http.responseText)
+		}
+	}*/
+	
+	
+}
+var filecontent = '';
+var extension = '';
+var filename = '';
+function encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  extension = element.files[0].name.split('.').pop().toLowerCase();
+  filename = element.files[0].name;
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    console.log('RESULT', reader.result)
+ filecontent = reader.result;
+    console.log('RESULTS', filecontent.length)
+
+  }
+  reader.readAsDataURL(file);
+ 
+}
+
+</script>
+
+</form>

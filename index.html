@@ -64,6 +64,7 @@ function loadXMLDoc() {
 		
 		if(http.readyState == 4 && http.status == 200) {
 			alert('Case Successfully created : ' + http.responseText);
+			window.location.reload();
 		}
 		else
 		{			

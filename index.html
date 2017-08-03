@@ -76,7 +76,7 @@ function loadXMLDoc() {
 	var url = "https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/";
 	var name = document.getElementById('name').value;	
 	var subject = document.getElementById('subject').value;	
-	var params = "{\"name\":\""+name+"\",\"subject\":\""+subject+"\",\"filename\":\""+filename+"\", \"filecontent\":\""+filecontent+"\"}";
+	var params = "{\"name\":\""+name+"\",\"subject\":\""+subject+"\",\"filename\":\""+filename+"\", \"filecontent\":\""+filecontent+"\", \"hostname\":\""+hostname+"\"}";
 	http.open("POST", url, true);
 	http.send(params);
 

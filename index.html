@@ -46,32 +46,10 @@ action="https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseMa
 
 function loadXMLDoc() {
 	
-	//Authorize User to perfrom further operation
-	/*var httpLogin = new XMLHttpRequest();
-	var login = "https://login.salesforce.com/services/oauth2/token";
-	var loginParams  ="grant_type=password&username=harshala.shewale@ensdev.com&password=espl@12345&client_secret=1401072963042743558&client_id=3MVG9ZL0ppGP5UrBLIM7G_t9JPwGsfKFhFUPjq24P2WE6Nky5VIllwz0thktVoc8RzT4W1H4hZcYyvZz_SOqr";
-	httpLogin.open("POST", login, true);
-	httpLogin.setRequestHeader("Authorization", "Bearer");
-	httpLogin.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	httpLogin.setRequestHeader("WWW-Authenticate", "Basic");
-    httpLogin.setRequestHeader("Access-Control-Allow-Origin", "file:///C:/Users/harshala.shewale/Desktop/")	
-	httpLogin.send(loginParams);
-	
-	httpLogin.onreadystatechange = function() {
-		if(httpLogin.readyState == 4 && httpLogin.status == 200) {
-			console.log('Success' + httpLogin);
-		}
-		else
-		{
-			console.log('Error' + httpLogin);
-			//alert('Error' + httpLogin.response)
-		}
-	}
-	*/
 	//Create Case and Attachment
 	
 	var hostname = window.location.hostname;	
-	alert('hostname : ' + hostname);
+	//alert('hostname : ' + hostname);
 	var http = new XMLHttpRequest();
 	var url = "https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/";
 	var name = document.getElementById('name').value;	
@@ -81,18 +59,12 @@ function loadXMLDoc() {
 	http.open("POST", url, true);
 	http.send(params);
 
-	//Send the proper header information along with the request
-	
-	//http.setRequestHeader("Access-Control-Allow-Methods","POST");
-	//http.setRequestHeader("Content-Type","text/plain");
-	http.onreadystatechange = function() {//Call a function when the state changes.
+	http.onreadystatechange = function() {
+		//Call a function when the state changes.
+		alert('State :' +http.readyState);
 		if(http.readyState == 4 && http.status == 200) {
-			alert('Success' + http.responseText);
-		}
-		else
-		{
-			alert('Error' + http.responseText)
-		}
+			alert('Case Successfully created : ' + http.responseText);
+		}		
 	}
 	
 	

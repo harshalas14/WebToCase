@@ -69,6 +69,9 @@ function loadXMLDoc() {
 	}
 	*/
 	//Create Case and Attachment
+	
+	var hostname = window.location.hostname;	
+	alert('hostname : ' + hostname);
 	var http = new XMLHttpRequest();
 	var url = "https://w2ctest-developer-edition.ap2.force.com/services/apexrest/CaseManagement/v1/";
 	var name = document.getElementById('name').value;	

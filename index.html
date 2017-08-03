@@ -61,7 +61,7 @@ function loadXMLDoc() {
 
 	http.onreadystatechange = function() {
 		//Call a function when the state changes.
-		alert('State :' +http.readyState);
+		alert('State :' +http.readyState + 'status' + http.status);
 		if(http.readyState == 4 && http.status == 200) {
 			alert('Case Successfully created : ' + http.responseText);
 		}
